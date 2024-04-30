@@ -1,6 +1,7 @@
 // LoginPage.js
 import React from 'react';
 import { Button, Typography, Box, Paper, Container } from '@mui/material';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import backgroundImage from './login-background.webp'; // Ensure this path is correct
 
 // Component for the login page
@@ -46,7 +47,7 @@ const LoginPage = () => {
                 </Paper>
             </Container>
             <Box component="footer" sx={{ mt: 3, py: 2, px: 3, backgroundColor: 'rgba(0, 0, 0, 0.5)', width: '100%', textAlign: 'center' }}>
-                <Link href="/support" color="inherit" underline="none">
+                <Link href="/Support" color="inherit" underline="none">
                     Visit our Support Page
                 </Link>
             </Box>
