@@ -49,8 +49,8 @@ const LoginPage = () => {
                     </Button>
                 </Paper>
             </Container>
-            <Box component="footer" sx={{ mt: 3, py: 2, px: 3, backgroundColor: 'rgba(0, 0, 0, 0.5)', width: '100%', textAlign: 'center' }}>
-                <Button onClick={redirectToSupportPage} style={{ color: 'white' }}> {/* Use Button and onClick event */}
+            <Box sx={{ p: 2, backgroundColor: 'rgba(0, 0, 0, 0.5)', textAlign: 'center', color: 'white' }}>
+                <Button onClick={redirectToSupportPage} style={{ color: 'white' }}>
                     Visit our Support Page
                 </Button>
             </Box>
