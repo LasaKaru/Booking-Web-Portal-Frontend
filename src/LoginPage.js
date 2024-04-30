@@ -11,41 +11,39 @@ const LoginPage = () => {
     return (
         <Box
             sx={{
-                minHeight: '100vh', // Minimum height to cover the viewport
-                backgroundImage: `url(${backgroundImage})`, // Background image
-                backgroundRepeat: 'no-repeat', // Don't repeat the background image
-                backgroundSize: 'cover', // Cover the area without spaces
-                backgroundPosition: 'center', // Center the background image
-                display: 'flex', // Display as a flex container
-                flexDirection: 'column', // Arrange content in a column
-                justifyContent: 'center', // Center content vertically
-                alignItems: 'center', // Center content horizontally
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: '100vh',
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
             }}
         >
-            <Container maxWidth="xs">
+            <Container maxWidth="xs" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <Paper
-                    elevation={3} // Paper elevation
+                    elevation={3}
                     sx={{
-                        padding: 4, // Padding
-                        display: 'flex', // Display as a flex container
-                        flexDirection: 'column', // Arrange children in a column
-                        alignItems: 'center', // Center children horizontally
-                        backgroundColor: 'rgba(255, 255, 255, 0.8)', // Slightly transparent white background
+                        padding: 4,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
                     }}
                 >
                     <Typography variant="h4" component="h1" gutterBottom sx={{ textAlign: 'center' }}>
-                        Welcome to PickNRide {/* Heading */}
+                        Welcome to PickNRide
                     </Typography>
                     <Typography variant="subtitle1" gutterBottom sx={{ mb: 2, textAlign: 'center' }}>
-                        Your Go-To Transport Solution {/* Subtitle */}
+                        Your Go-To Transport Solution
                     </Typography>
                     <Button
-                        variant="contained" // Contained button
-                        color="primary" // Primary color
-                        sx={{ mt: 2 }} // Margin top
-                        onClick={() => window.location.href = "/auth/login"} // Redirect to login page
+                        variant="contained"
+                        color="primary"
+                        sx={{ mt: 2 }}
+                        onClick={() => window.location.href = "/auth/login"}
                     >
-                        Login {/* Button text */}
+                        Login
                     </Button>
                 </Paper>
             </Container>
