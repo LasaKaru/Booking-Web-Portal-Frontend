@@ -99,7 +99,7 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
     return (
         <Box
             sx={{
-                backgroundImage: `url('/path-to-your-background-image.jpg')`, // Replace '/path-to-your-background-image.jpg' with the actual path to your background image
+                backgroundImage: `url('/image1.gif')`, // Replace '/path-to-your-background-image.jpg' with the actual path to your background image
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',

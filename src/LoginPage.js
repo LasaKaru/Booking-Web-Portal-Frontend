@@ -85,7 +85,7 @@ const LoginPage = () => {
                     bottom: 0,
                 }}
             >
-                <Button onClick={redirectToSupportPage} style={{ color: 'white' }}>
+                <Button onClick={redirectToSupportPage} style={{ color: 'black' }}>
                     Visit our Support Page
                 </Button>
             </Box>
