@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Typography, Box, Paper, Container } from '@mui/material';
-import backgroundImage from './login-background.webp'; // Ensure this path is correct
+import backgroundImage1 from './image1.jpg'; // Ensure these paths are correct
+import backgroundImage2 from './image2.jpg';
+import backgroundImage3 from './image3.jpg';
 
 // Component for the login page
 const LoginPage = () => {
+    const images = [backgroundImage1, backgroundImage2, backgroundImage3]; // Array of image paths
+    const [currentImageIndex, setCurrentImageIndex] = useState(0); // State to track the current image index
+
+    // Function to switch to the next image
+    const nextImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    };
+
+    // Effect to change images every 5 seconds
+    useEffect(() => {
+        const intervalId = setInterval(nextImage, 5000);
+        return () => clearInterval(intervalId); // Cleanup function to clear the interval
+    }, []);
+
     const redirectToSupportPage = () => {
         window.location.href = "./support"; // Redirect to the support page
     };
@@ -12,15 +28,24 @@ const LoginPage = () => {
         <Box
             sx={{
                 display: 'flex',
-                flexDirection: 'column',
                 minHeight: '100vh',
-                backgroundImage: `url(${backgroundImage})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                backgroundColor: 'white', // Set background color to white
             }}
         >
-            <Container maxWidth="xs" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            {/* Left Side: Images */}
+            <Box
+                sx={{
+                    flex: 1, // Take up remaining space
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
+                <img src={images[currentImageIndex]} alt={`Image ${currentImageIndex + 1}`} style={{ width: '500px', height: '500px' }} />
+            </Box>
+            
+            {/* Right Side: Login Content */}
+            <Container maxWidth="xs" sx={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <Paper
                     elevation={3}
                     sx={{
@@ -47,7 +72,18 @@ const LoginPage = () => {
                     </Button>
                 </Paper>
             </Container>
-            <Box sx={{ p: 2, backgroundColor: 'rgba(0, 0, 0, 0.5)', textAlign: 'center', color: 'white' }}>
+            {/* Footer */}
+            <Box
+                sx={{
+                    width: '100%',
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    textAlign: 'center',
+                    color: 'white',
+                    p: 2,
+                    position: 'absolute',
+                    bottom: 0,
+                }}
+            >
                 <Button onClick={redirectToSupportPage} style={{ color: 'white' }}>
                     Visit our Support Page
                 </Button>
