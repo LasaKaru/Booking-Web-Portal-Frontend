@@ -5,6 +5,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { add, startOfDay } from 'date-fns';
 import { services } from '../serviceData';
 import { bookAppointment } from '../services/appointmentService';
+import backgroundImage1 from './image1.gif'; // Import the background image
 
 const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
     const defaultAppointmentDate = add(startOfDay(new Date()), { days: 1, hours: 10 });
@@ -99,12 +100,12 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
     return (
         <Box
             sx={{
-                backgroundImage: `url('/image1.gif')`, // Replace '/path-to-your-background-image.jpg' with the actual path to your background image
+                backgroundImage: `url(${backgroundImage1})`, // Use the imported background image
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
-                p: 4, // Add padding to the container
-                borderRadius: 8, // Add border radius to the container
+                p: 4,
+                borderRadius: 8,
             }}
         >
             <form onSubmit={handleSubmit} style={{ width: '100%' }}>
