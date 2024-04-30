@@ -4,17 +4,17 @@ import { createTheme } from '@mui/material/styles'; // Importing createTheme fro
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#ed5a62', // Setting red as the primary color
+      main: '#b5050e', // Setting red as the primary color
     },
     secondary: {
-      main: '#1a237e', // Setting Navy blue as the secondary color
+      main: '#3d0407', // Setting Navy blue as the secondary color
     },
   },
   typography: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif', // Setting default font family
     h4: {
       fontWeight: 600, // Setting font weight for h4 elements
-      color: '#ed5a62', // Setting color for h4 elements
+      color: '#b5050e', // Setting color for h4 elements
     },
     h5: {
       fontWeight: 500, // Setting font weight for h5 elements
