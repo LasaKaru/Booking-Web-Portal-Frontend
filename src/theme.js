@@ -4,7 +4,7 @@ import { createTheme } from '@mui/material/styles'; // Importing createTheme fro
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#009688', // Setting Teal as the primary color
+      main: '#ed5a62', // Setting red as the primary color
     },
     secondary: {
       main: '#1a237e', // Setting Navy blue as the secondary color
@@ -14,7 +14,7 @@ const theme = createTheme({
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif', // Setting default font family
     h4: {
       fontWeight: 600, // Setting font weight for h4 elements
-      color: '#009688', // Setting color for h4 elements
+      color: '#ed5a62', // Setting color for h4 elements
     },
     h5: {
       fontWeight: 500, // Setting font weight for h5 elements

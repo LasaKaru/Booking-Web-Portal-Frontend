@@ -6,4 +6,5 @@ export const services = [
     { value: 'Ride-Booking', label: 'Ride Booking' },
     { value: 'Rental-Service', label: 'Rental Service' },
     { value: 'Delivery-Booking', label: 'Delivery Booking' },
+    { value: 'Scheduled-Transport', label: 'Scheduled Transport' },
 ];

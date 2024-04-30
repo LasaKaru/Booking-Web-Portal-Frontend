@@ -30,10 +30,10 @@ const LoginPage = () => {
                     }}
                 >
                     <Typography variant="h4" component="h1" gutterBottom sx={{ textAlign: 'center' }}>
-                        Welcome to ProRide {/* Heading */}
+                        Welcome to PickNRide {/* Heading */}
                     </Typography>
                     <Typography variant="subtitle1" gutterBottom sx={{ mb: 2, textAlign: 'center' }}>
-                        Your gateway to Rides and management {/* Subtitle */}
+                     Your Ride, Your Way {/* Subtitle */}
                     </Typography>
                     <Button
                         variant="contained" // Contained button

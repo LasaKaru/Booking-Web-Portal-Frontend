@@ -94,7 +94,7 @@ function App() {
           <AppBar position="static" color="primary">
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              ProRide - Your gateway to Rides and management
+              PickNRide - Your Ride, Your Way
               </Typography>
               {loggedIn && (
                 <IconButton color="inherit" onClick={handleLogout}>

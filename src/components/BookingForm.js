@@ -80,7 +80,7 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
 
         try {
             await bookAppointment(appointmentDetails); // Call function to book appointment
-            handleOpenSnackbar('Appointment booked successfully!'); // Display success message
+            handleOpenSnackbar('Ride booked successfully!'); // Display success message
             onBookingSuccess(); // Trigger onBookingSuccess callback
 
             // Reset form fields
@@ -89,7 +89,7 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
             setPhoneNumber('');
         } catch (error) {
             console.error('Booking failed:', error); // Log error if booking fails
-            handleOpenSnackbar('Failed to book the appointment. Please try again.'); // Display error message
+            handleOpenSnackbar('Failed to book the Ride. Please try again.'); // Display error message
         } finally {
             setIsBooking(false); // Stop loading indicator regardless of the outcome
         }
