@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Typography, Box, Paper, Container } from '@mui/material';
-import backgroundImage1 from './image1.jpg'; // Ensure these paths are correct
-import backgroundImage2 from './image2.jpg';
-import backgroundImage3 from './image3.jpg';
+import backgroundImage1 from './image1.gif'; // Ensure these paths are correct
+import backgroundImage2 from './image2.gif';
+import backgroundImage3 from './image3.gif';
 
 // Component for the login page
 const LoginPage = () => {
