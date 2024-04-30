@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, MenuItem, Button, CircularProgress, Box, Grid } from '@mui/material';
+import { TextField, MenuItem, Button, CircularProgress, Box } from '@mui/material';
 import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { add, startOfDay } from 'date-fns';
 import { services } from '../serviceData';
 import { bookAppointment } from '../services/appointmentService';
-import backgroundImage1 from './image1.gif'; 
+import backgroundImage1 from './image1.gif'; // Import the background image
 
 const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
     const defaultAppointmentDate = add(startOfDay(new Date()), { days: 1, hours: 10 });
@@ -98,124 +98,121 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
     };
 
     return (
-        <Grid container spacing={2}>
-            {/* Left side with background image */}
-            <Grid item xs={{ width: '100%', height: '100%' }}>
-                <Box
-                    sx={{
-                        backgroundImage: `url(${backgroundImage1})`,
-                        backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center',
-                        height: '100%',
-                        borderRadius: 10,
-                    }}
-                />
-            </Grid>
-            {/* Right side with form */}
-            <Grid item xs={12} sm={6}>
-                <Box p={4}>
-                    <form onSubmit={handleSubmit} style={{ width: '100%' }}>
-                        <TextField
-                            label="Name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            error={!!errors.name}
-                            helperText={errors.name}
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
+        <Box
+            sx={{
+                display: 'flex',
+                backgroundImage: `url(${backgroundImage1})`, // Use the imported background image
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                borderRadius: 8,
+                overflow: 'hidden',
+            }}
+        >
+            <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <img src={backgroundImage1} alt="Background" style={{ width: '400px', height: '400px', objectFit: 'cover' }} />
+            </Box>
+            <Box sx={{ flex: 1, p: 4 }}>
+                <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+                    <TextField
+                        label="Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        error={!!errors.name}
+                        helperText={errors.name}
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        label="Phone Number"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        error={!!errors.phoneNumber}
+                        helperText={errors.phoneNumber}
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                        type="tel"
+                    />
+                    <TextField
+                        label="Trip Details"
+                        value={tripDetails}
+                        onChange={(e) => setTripDetails(e.target.value)}
+                        error={!!errors.tripDetails}
+                        helperText={errors.tripDetails}
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        label="Start Location"
+                        value={startLocation}
+                        onChange={(e) => setStartLocation(e.target.value)}
+                        error={!!errors.startLocation}
+                        helperText={errors.startLocation}
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        select
+                        label="Service"
+                        value={service}
+                        onChange={(e) => setService(e.target.value)}
+                        error={!!errors.service}
+                        helperText={errors.service}
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                    >
+                        {services.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DateTimePicker
+                            label="Appointment Date"
+                            value={appointmentDate}
+                            onChange={(newValue) => setAppointmentDate(newValue)}
+                            slotProps={{
+                                textField: {
+                                    variant: 'outlined',
+                                    fullWidth: true,
+                                    margin: 'normal',
+                                    error: !!errors.appointmentDate,
+                                    helperText: errors.appointmentDate,
+                                }
+                            }}
                         />
-                        <TextField
-                            label="Phone Number"
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                            error={!!errors.phoneNumber}
-                            helperText={errors.phoneNumber}
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            type="tel"
-                        />
-                        <TextField
-                            label="Trip Details"
-                            value={tripDetails}
-                            onChange={(e) => setTripDetails(e.target.value)}
-                            error={!!errors.tripDetails}
-                            helperText={errors.tripDetails}
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                        />
-                        <TextField
-                            label="Start Location"
-                            value={startLocation}
-                            onChange={(e) => setStartLocation(e.target.value)}
-                            error={!!errors.startLocation}
-                            helperText={errors.startLocation}
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                        />
-                        <TextField
-                            select
-                            label="Service"
-                            value={service}
-                            onChange={(e) => setService(e.target.value)}
-                            error={!!errors.service}
-                            helperText={errors.service}
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                        >
-                            {services.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DateTimePicker
-                                label="Appointment Date"
-                                value={appointmentDate}
-                                onChange={(newValue) => setAppointmentDate(newValue)}
-                                slotProps={{
-                                    textField: {
-                                        variant: 'outlined',
-                                        fullWidth: true,
-                                        margin: 'normal',
-                                        error: !!errors.appointmentDate,
-                                        helperText: errors.appointmentDate,
-                                    }
+                    </LocalizationProvider>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                        style={{ marginTop: 20, position: 'relative' }}
+                        disabled={isBooking}
+                    >
+                        Book Ride
+                        {isBooking && (
+                            <CircularProgress
+                                size={24}
+                                style={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '50%',
+                                    marginTop: -12,
+                                    marginLeft: -12,
                                 }}
                             />
-                        </LocalizationProvider>
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            fullWidth
-                            style={{ marginTop: 20, position: 'relative' }}
-                            disabled={isBooking}
-                        >
-                            Book Ride
-                            {isBooking && (
-                                <CircularProgress
-                                    size={24}
-                                    style={{
-                                        position: 'absolute',
-                                        top: '50%',
-                                        left: '50%',
-                                        marginTop: -12,
-                                        marginLeft: -12,
-                                    }}
-                                />
-                            )}
-                        </Button>
-                    </form>
-                </Box>
-            </Grid>
-        </Grid>
+                        )}
+                    </Button>
+                </form>
+            </Box>
+        </Box>
     );
 };
 
