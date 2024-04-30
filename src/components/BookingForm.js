@@ -1,97 +1,98 @@
-// components/BookingForm.js
+import React, { useState, useEffect } from 'react';
+import { TextField, MenuItem, Button, CircularProgress } from '@mui/material';
+import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { add, startOfDay } from 'date-fns';
+import { services } from '../serviceData';
+import { bookAppointment } from '../services/appointmentService';
 
-import React, { useState, useEffect } from 'react'; // Importing necessary modules from React
-import { services } from '../serviceData'; // Importing service data
-import { TextField, MenuItem, Button, CircularProgress } from '@mui/material'; // Importing components from Material-UI
-import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers'; // Importing date-time picker components from Material-UI
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'; // Importing date adapter from Material-UI
-import { add, startOfDay } from 'date-fns'; // Importing date-fns functions
-import { bookAppointment } from '../services/appointmentService'; // Importing function to book appointment
-
-// BookingForm component definition
 const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
-    const defaultAppointmentDate = add(startOfDay(new Date()), { days: 1, hours: 10 }); // Setting default appointment date
+    const defaultAppointmentDate = add(startOfDay(new Date()), { days: 1, hours: 10 });
 
-    const [name, setName] = useState(userDetails.name || userDetails.username); // State for name input field
-    const [phoneNumber, setPhoneNumber] = useState(''); // State for phone number input field
-    const [service, setService] = useState(''); // State for service selection
-    const [appointmentDate, setAppointmentDate] = useState(defaultAppointmentDate); // State for appointment date
-    const [errors, setErrors] = useState({ // State for form validation errors
+    const [name, setName] = useState(userDetails.name || userDetails.username);
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [service, setService] = useState('');
+    const [appointmentDate, setAppointmentDate] = useState(defaultAppointmentDate);
+    const [tripDetails, setTripDetails] = useState('');
+    const [startLocation, setStartLocation] = useState('');
+    const [errors, setErrors] = useState({
         name: '',
         phoneNumber: '',
         service: '',
         appointmentDate: '',
+        tripDetails: '',
+        startLocation: ''
     });
-    const [isBooking, setIsBooking] = useState(false); // State to track booking process loading state
+    const [isBooking, setIsBooking] = useState(false);
 
-    // Effect to update state when userDetails changes
     useEffect(() => {
-        setName(userDetails.name || userDetails.username); // Update name state when userDetails changes
+        setName(userDetails.name || userDetails.username);
     }, [userDetails]);
 
-    // Function to validate form fields
     const validateForm = () => {
-        let tempErrors = { name: '', service: '', appointmentDate: '', phoneNumber: '' }; // Temporary object to store validation errors
-        let isValid = true; // Flag to track overall form validation status
+        let tempErrors = { name: '', service: '', appointmentDate: '', phoneNumber: '', tripDetails: '', startLocation: '' };
+        let isValid = true;
 
-        if (!name) { // Validate name field
-            tempErrors.name = 'Name is required.'; // Set error message if name field is empty
-            isValid = false; // Set flag to false if name field is empty
+        if (!name) {
+            tempErrors.name = 'Name is required.';
+            isValid = false;
+        }
+        if (!phoneNumber) {
+            tempErrors.phoneNumber = 'Phone number is required.';
+            isValid = false;
+        }
+        if (!service) {
+            tempErrors.service = 'Please select a service.';
+            isValid = false;
+        }
+        if (!appointmentDate || new Date(appointmentDate) < new Date()) {
+            tempErrors.appointmentDate = 'Please select a future date and time.';
+            isValid = false;
+        }
+        if (!tripDetails) {
+            tempErrors.tripDetails = 'Trip details are required.';
+            isValid = false;
+        }
+        if (!startLocation) {
+            tempErrors.startLocation = 'Start location is required.';
+            isValid = false;
         }
 
-        if (!service) { // Validate service field
-            tempErrors.service = 'Please select a service.'; // Set error message if service field is empty
-            isValid = false; // Set flag to false if service field is empty
-        }
-
-        if (!appointmentDate || new Date(appointmentDate) < new Date()) { // Validate appointment date
-            tempErrors.appointmentDate = 'Please select a future date and time.'; // Set error message if appointment date is not in the future
-            isValid = false; // Set flag to false if appointment date is not in the future
-        }
-
-        // Basic validation for phone number
-        const phoneRegex = /^[0-9]{10}$/; // Regular expression for 10-digit phone number
-        if (!phoneNumber) { // Validate phone number field
-            tempErrors.phoneNumber = 'Phone number is required.'; // Set error message if phone number field is empty
-            isValid = false; // Set flag to false if phone number field is empty
-        } else if (!phoneRegex.test(phoneNumber)) { // Validate phone number format
-            tempErrors.phoneNumber = 'Phone number must be 10 digits.'; // Set error message if phone number format is incorrect
-            isValid = false; // Set flag to false if phone number format is incorrect
-        }
-
-        setErrors(tempErrors); // Update errors state with validation errors
-        return isValid; // Return overall form validation status
+        setErrors(tempErrors);
+        return isValid;
     };
 
-    // Function to handle form submission
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent default form submission behavior
-        if (!validateForm()) return; // Skip form submission if form validation fails
+        e.preventDefault();
+        if (!validateForm()) return;
 
-        setIsBooking(true); // Start loading indicator for booking process
+        setIsBooking(true);
 
-        const appointmentDetails = { // Create object with appointment details
+        const appointmentDetails = {
             name,
             phoneNumber,
             service,
             appointmentDate,
-            email: userDetails.email, // Include user email in appointment details
+            tripDetails,
+            startLocation,
+            email: userDetails.email,
         };
 
         try {
-            await bookAppointment(appointmentDetails); // Call function to book appointment
-            handleOpenSnackbar('Ride booked successfully!'); // Display success message
-            onBookingSuccess(); // Trigger onBookingSuccess callback
+            await bookAppointment(appointmentDetails);
+            handleOpenSnackbar('Ride booked successfully!');
+            onBookingSuccess();
 
-            // Reset form fields
             setService('');
             setAppointmentDate(defaultAppointmentDate);
             setPhoneNumber('');
+            setTripDetails('');
+            setStartLocation('');
         } catch (error) {
-            console.error('Booking failed:', error); // Log error if booking fails
-            handleOpenSnackbar('Failed to book the Ride. Please try again.'); // Display error message
+            console.error('Booking failed:', error);
+            handleOpenSnackbar('Failed to book the Ride. Please try again.');
         } finally {
-            setIsBooking(false); // Stop loading indicator regardless of the outcome
+            setIsBooking(false);
         }
     };
 
@@ -116,7 +117,27 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
                 fullWidth
                 margin="normal"
                 variant="outlined"
-                type="tel" // Suggests to browsers that this input should be treated as a telephone number
+                type="tel"
+            />
+            <TextField
+                label="Trip Details"
+                value={tripDetails}
+                onChange={(e) => setTripDetails(e.target.value)}
+                error={!!errors.tripDetails}
+                helperText={errors.tripDetails}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+            />
+            <TextField
+                label="Start Location"
+                value={startLocation}
+                onChange={(e) => setStartLocation(e.target.value)}
+                error={!!errors.startLocation}
+                helperText={errors.startLocation}
+                fullWidth
+                margin="normal"
+                variant="outlined"
             />
             <TextField
                 select
@@ -151,7 +172,14 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
                     }}
                 />
             </LocalizationProvider>
-            <Button type="submit" variant="contained" color="primary" fullWidth style={{ marginTop: 20, position: 'relative' }} disabled={isBooking}>
+            <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                style={{ marginTop: 20, position: 'relative' }}
+                disabled={isBooking}
+            >
                 Book Ride
                 {isBooking && (
                     <CircularProgress
@@ -170,4 +198,4 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
     );
 };
 
-export default BookingForm; // Exporting BookingForm component
+export default BookingForm;

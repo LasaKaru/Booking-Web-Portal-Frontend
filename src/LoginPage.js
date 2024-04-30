@@ -45,6 +45,11 @@ const LoginPage = () => {
                     </Button>
                 </Paper>
             </Container>
+            <Box component="footer" sx={{ mt: 3, py: 2, px: 3, backgroundColor: 'rgba(0, 0, 0, 0.5)', width: '100%', textAlign: 'center' }}>
+                <Link href="/support" color="inherit" underline="none">
+                    Visit our Support Page
+                </Link>
+            </Box>
         </Box>
     );
 };
