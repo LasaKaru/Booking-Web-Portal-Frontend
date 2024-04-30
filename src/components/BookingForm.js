@@ -6,6 +6,9 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'; // Importin
 import { add, startOfDay } from 'date-fns'; // Importing date-fns functions
 import { bookAppointment } from '../services/appointmentService'; // Importing function to book appointment
 
+// Background image import
+import backgroundImage1 from './image1.gif';
+
 // BookingForm component definition
 const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
     const defaultAppointmentDate = add(startOfDay(new Date()), { days: 1, hours: 10 }); // Setting default appointment date
@@ -96,7 +99,7 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
     return (
         <div style={{ display: 'flex' }}>
             <div style={{ flex: 1, padding: '20px' }}>
-                <img src="/image1.gif" alt="Background" style={{ width: '100%', height: '500px', objectFit: 'cover' }} />
+                <img src={backgroundImage1} alt="Background" style={{ width: '100%', height: '500px', objectFit: 'cover' }} />
             </div>
             <div style={{ flex: 1, padding: '20px' }}>
                 <form onSubmit={handleSubmit} style={{ width: '100%' }}>
