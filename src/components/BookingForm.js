@@ -100,7 +100,7 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
     return (
         <Grid container spacing={2}>
             {/* Left side with background image */}
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={{ width: '100%', height: '100%' }}>
                 <Box
                     sx={{
                         backgroundImage: `url(${backgroundImage1})`,
@@ -108,7 +108,7 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                         height: '100%',
-                        borderRadius: 8,
+                        borderRadius: 10,
                     }}
                 />
             </Grid>
