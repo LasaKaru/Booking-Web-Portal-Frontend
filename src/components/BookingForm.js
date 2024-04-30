@@ -96,7 +96,7 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
     return (
         <div style={{ display: 'flex' }}>
             <div style={{ flex: 1, padding: '20px' }}>
-                <img src="./image1.gif" alt="Background" style={{ width: '100%', height: '500px', objectFit: 'cover' }} />
+                <img src="/image1.gif" alt="Background" style={{ width: '100%', height: '500px', objectFit: 'cover' }} />
             </div>
             <div style={{ flex: 1, padding: '20px' }}>
                 <form onSubmit={handleSubmit} style={{ width: '100%' }}>
