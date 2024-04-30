@@ -35,7 +35,7 @@ const UpcomingAppointments = ({ email, triggerRefresh }) => {
     if (appointments.length === 0) {
         return (
             <Typography variant="subtitle1" style={{ marginTop: 20, textAlign: 'center' }}>
-                No upcoming Rides / Booking. Let's try one!
+                No upcoming Rides / Booking. Let's Ride one!
             </Typography>
         );
     }

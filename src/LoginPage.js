@@ -33,7 +33,7 @@ const LoginPage = () => {
                         Welcome to PickNRide {/* Heading */}
                     </Typography>
                     <Typography variant="subtitle1" gutterBottom sx={{ mb: 2, textAlign: 'center' }}>
-                     Your Ride, Your Way {/* Subtitle */}
+                    Your Go-To Transport Solution {/* Subtitle */}
                     </Typography>
                     <Button
                         variant="contained" // Contained button

@@ -94,7 +94,7 @@ function App() {
           <AppBar position="static" color="primary">
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              PickNRide - Your Ride, Your Way
+              PickNRide - Your Go-To Transport Solution
               </Typography>
               {loggedIn && (
                 <IconButton color="inherit" onClick={handleLogout}>
