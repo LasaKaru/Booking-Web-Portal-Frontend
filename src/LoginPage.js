@@ -47,7 +47,7 @@ const LoginPage = () => {
                 </Paper>
             </Container>
             <Box component="footer" sx={{ mt: 3, py: 2, px: 3, backgroundColor: 'rgba(0, 0, 0, 0.5)', width: '100%', textAlign: 'center' }}>
-                <Link href="/Support" color="inherit" underline="none">
+                <Link to="/support" style={{ color: 'white', textDecoration: 'none' }}> {/* Use Link component */}
                     Visit our Support Page
                 </Link>
             </Box>
