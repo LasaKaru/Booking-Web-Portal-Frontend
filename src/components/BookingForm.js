@@ -1,3 +1,5 @@
+// components/BookingForm.js
+
 import React, { useState, useEffect } from 'react'; // Importing necessary modules from React
 import { services } from '../serviceData'; // Importing service data
 import { TextField, MenuItem, Button, CircularProgress } from '@mui/material'; // Importing components from Material-UI
@@ -5,9 +7,6 @@ import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers'; // I
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'; // Importing date adapter from Material-UI
 import { add, startOfDay } from 'date-fns'; // Importing date-fns functions
 import { bookAppointment } from '../services/appointmentService'; // Importing function to book appointment
-
-// Background image import
-import backgroundImage1 from './image1.gif';
 
 // BookingForm component definition
 const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
@@ -97,84 +96,77 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
     };
 
     return (
-        <div style={{ display: 'flex' }}>
-            <div style={{ flex: 1, padding: '20px' }}>
-                <img src={backgroundImage1} alt="Background" style={{ width: '100%', height: '500px', objectFit: 'cover' }} />
-            </div>
-            <div style={{ flex: 1, padding: '20px' }}>
-                <form onSubmit={handleSubmit} style={{ width: '100%' }}>
-                    <TextField
-                        label="Name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        error={!!errors.name}
-                        helperText={errors.name}
-                        fullWidth
-                        margin="normal"
-                        variant="outlined"
+        <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+            <TextField
+                label="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                error={!!errors.name}
+                helperText={errors.name}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+            />
+            <TextField
+                label="Phone Number"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                error={!!errors.phoneNumber}
+                helperText={errors.phoneNumber}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                type="tel" // Suggests to browsers that this input should be treated as a telephone number
+            />
+            <TextField
+                select
+                label="Service"
+                value={service}
+                onChange={(e) => setService(e.target.value)}
+                error={!!errors.service}
+                helperText={errors.service}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+            >
+                {services.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                    </MenuItem>
+                ))}
+            </TextField>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DateTimePicker
+                    label="Appointment Date"
+                    value={appointmentDate}
+                    onChange={(newValue) => setAppointmentDate(newValue)}
+                    slotProps={{
+                        textField: {
+                            variant: 'outlined',
+                            fullWidth: true,
+                            margin: 'normal',
+                            error: !!errors.appointmentDate,
+                            helperText: errors.appointmentDate,
+                        }
+                    }}
+                />
+            </LocalizationProvider>
+            <Button type="submit" variant="contained" color="primary" fullWidth style={{ marginTop: 20, position: 'relative' }} disabled={isBooking}>
+                Book Ride
+                {isBooking && (
+                    <CircularProgress
+                        size={24}
+                        style={{
+                            position: 'absolute',
+                            top: '50%',
+                            left: '50%',
+                            marginTop: -12,
+                            marginLeft: -12,
+                        }}
                     />
-                    <TextField
-                        label="Phone Number"
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        error={!!errors.phoneNumber}
-                        helperText={errors.phoneNumber}
-                        fullWidth
-                        margin="normal"
-                        variant="outlined"
-                        type="tel" // Suggests to browsers that this input should be treated as a telephone number
-                    />
-                    <TextField
-                        select
-                        label="Service"
-                        value={service}
-                        onChange={(e) => setService(e.target.value)}
-                        error={!!errors.service}
-                        helperText={errors.service}
-                        fullWidth
-                        margin="normal"
-                        variant="outlined"
-                    >
-                        {services.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DateTimePicker
-                            label="Appointment Date"
-                            value={appointmentDate}
-                            onChange={(newValue) => setAppointmentDate(newValue)}
-                            slotProps={{
-                                textField: {
-                                    variant: 'outlined',
-                                    fullWidth: true,
-                                    margin: 'normal',
-                                    error: !!errors.appointmentDate,
-                                    helperText: errors.appointmentDate,
-                                }
-                            }}
-                        />
-                    </LocalizationProvider>
-                    <Button type="submit" variant="contained" color="primary" fullWidth style={{ marginTop: 20, position: 'relative' }} disabled={isBooking}>
-                        Book Ride
-                        {isBooking && (
-                            <CircularProgress
-                                size={24}
-                                style={{
-                                    position: 'absolute',
-                                    top: '50%',
-                                    left: '50%',
-                                    marginTop: -12,
-                                    marginLeft: -12,
-                                }}
-                            />
-                        )}
-                    </Button>
-                </form>
-            </div>
-        </div>
+                )}
+            </Button>
+        </form>
     );
 };
 
