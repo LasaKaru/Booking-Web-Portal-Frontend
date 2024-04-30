@@ -5,7 +5,7 @@ import backgroundImage from './login-background.webp'; // Ensure this path is co
 // Component for the login page
 const LoginPage = () => {
     const redirectToSupportPage = () => {
-        window.location.href = "/support"; // Redirect to the support page
+        window.location.href = "./support"; // Redirect to the support page
     };
 
     return (
