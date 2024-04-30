@@ -21,7 +21,7 @@ const LoginPage = () => {
     }, []);
 
     const redirectToSupportPage = () => {
-        window.location.href = "./support"; // Redirect to the support page
+        window.location.href = "./SupportPage.js"; // Redirect to the support page
     };
 
     return (
@@ -76,9 +76,9 @@ const LoginPage = () => {
             <Box
                 sx={{
                     width: '100%',
-                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
                     textAlign: 'center',
-                    color: 'white',
+                    color: 'black',
                     p: 2,
                     position: 'absolute',
                     bottom: 0,
