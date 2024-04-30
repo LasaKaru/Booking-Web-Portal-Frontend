@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './index.css';
 import { Button, Typography, Box, Paper, Container } from '@mui/material';
 import backgroundImage1 from './image1.gif'; // Ensure these paths are correct
 import backgroundImage2 from './image2.gif';
@@ -21,7 +22,7 @@ const LoginPage = () => {
     }, []);
 
     const redirectToSupportPage = () => {
-        window.location.href = "./SupportPage.js"; // Redirect to the support page
+        window.location.href = "./support"; // Redirect to the support page
     };
 
     return (
@@ -41,7 +42,7 @@ const LoginPage = () => {
                     justifyContent: 'center',
                 }}
             >
-                <img src={images[currentImageIndex]} alt={`Image ${currentImageIndex + 1}`} style={{ width: '500px', height: '500px' }} />
+                <img src={images[currentImageIndex]} alt={`Image ${currentImageIndex + 1}`} style={{ width: '550px', height: '525px' }} />
             </Box>
             
             {/* Right Side: Login Content */}
@@ -53,7 +54,7 @@ const LoginPage = () => {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                        backgroundColor: 'rgba(200, 139, 150, 0.22)',
                     }}
                 >
                     <Typography variant="h4" component="h1" gutterBottom sx={{ textAlign: 'center' }}>
